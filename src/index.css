@@ -1,0 +1,276 @@
+/* =========================================================
+   KATRAJ MILK PARLOUR — DESIGN TOKENS
+   Palette drawn from the shop's own signage: cream base,
+   signage-red for the wordmark, deep indigo from the logo,
+   turmeric-gold for ghee/shrikhand richness.
+   ========================================================= */
+:root {
+  --cream: #FBF6EC;
+  --cream-deep: #F1E8D8;
+  --milk-white: #FFFFFF;
+  --red: #B3242A;
+  --red-deep: #8C1B20;
+  --indigo: #1B3A63;
+  --indigo-deep: #12294A;
+  --gold: #D4A017;
+  --gold-light: #F0C955;
+  --charcoal: #2B2620;
+  --charcoal-soft: #5C544A;
+  --line: rgba(43, 38, 32, 0.12);
+
+  --font-display: 'Fraunces', 'Georgia', serif;
+  --font-body: 'Work Sans', 'Segoe UI', sans-serif;
+  --font-dev: 'Noto Sans Devanagari', 'Work Sans', sans-serif;
+
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --radius-sm: 8px;
+  --shadow-soft: 0 10px 30px -12px rgba(43, 38, 32, 0.25);
+  --shadow-card: 0 6px 20px -8px rgba(43, 38, 32, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-dev {
+  font-family: var(--font-dev);
+}
+
+h1, h2, h3, h4, .display-font {
+  font-family: var(--font-display);
+  color: var(--indigo-deep);
+  letter-spacing: -0.01em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+::selection {
+  background: var(--gold-light);
+  color: var(--charcoal);
+}
+
+/* Respect reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visibility for keyboard users */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* =========================================================
+   Reusable atoms
+   ========================================================= */
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--red);
+}
+
+.section {
+  padding: 5.5rem 0;
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 3.25rem 0;
+  }
+}
+
+.btn-brand {
+  background: var(--red);
+  color: var(--milk-white) !important;
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.9rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  box-shadow: 0 8px 20px -8px rgba(179, 36, 42, 0.55);
+}
+
+.btn-brand::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 60%);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.btn-brand:hover {
+  transform: translateY(-2px);
+  background: var(--red-deep);
+  box-shadow: 0 12px 26px -8px rgba(179, 36, 42, 0.65);
+  color: var(--milk-white) !important;
+}
+
+.btn-brand:active::after {
+  transform: scale(2.2);
+  opacity: 1;
+  transition: 0s;
+}
+
+.btn-outline-brand {
+  background: transparent;
+  color: var(--indigo-deep) !important;
+  border: 1.5px solid var(--indigo-deep);
+  border-radius: 999px;
+  padding: 0.8rem 1.85rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn-outline-brand:hover {
+  background: var(--indigo-deep);
+  color: var(--milk-white) !important;
+  transform: translateY(-2px);
+}
+
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--milk-white);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--charcoal-soft);
+  box-shadow: var(--shadow-card);
+}
+
+.dot-live {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3AA655;
+  display: inline-block;
+  box-shadow: 0 0 0 rgba(58, 166, 85, 0.6);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(58, 166, 85, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(58, 166, 85, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(58, 166, 85, 0); }
+}
+
+.card-brand {
+  background: var(--milk-white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card-brand:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-soft);
+}
+
+.section-divider {
+  width: 64px;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  margin: 0.9rem 0 1.4rem;
+}
+
+/* Milk-pour wave divider between sections */
+.wave-divider {
+  display: block;
+  width: 100%;
+  line-height: 0;
+}
+
+.wave-divider svg {
+  width: 100%;
+  height: 70px;
+  display: block;
+}
+
+/* Floating cream-drop ambient shapes */
+.drop-float {
+  position: absolute;
+  border-radius: 50% 50% 50% 0;
+  opacity: 0.12;
+  transform: rotate(45deg);
+  animation: float-drop 7s ease-in-out infinite;
+}
+
+@keyframes float-drop {
+  0%, 100% { transform: translateY(0) rotate(45deg); }
+  50% { transform: translateY(-18px) rotate(45deg); }
+}
+
+/* AOS-like fade fallback kept lightweight via aos library import in main.jsx */
+
+.navbar-brand-mark {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--indigo-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-light);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(18, 41, 74, 0.35);
+}
+
+.text-brand-red { color: var(--red); }
+.text-brand-indigo { color: var(--indigo-deep); }
+.text-brand-gold { color: var(--gold); }
+.bg-cream { background: var(--cream); }
+.bg-cream-deep { background: var(--cream-deep); }
+.bg-indigo { background: var(--indigo-deep); }
+
+.hover-lift {
+  transition: transform 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Scrollbar accent */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 999px; }
